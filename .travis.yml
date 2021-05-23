@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true udeshyagiri/docker-react-dummy npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'docker-react-dummy'
+  env: 'Dockerreactdummy-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-054231087266'
+  bucket_path: 'docker-react-dummy'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
